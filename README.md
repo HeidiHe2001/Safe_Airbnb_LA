@@ -11,16 +11,26 @@ https://catalog.data.gov/dataset/crime-data-from-2020-to-present
 
 **i. relevant size statistics**
 Number of rows: 901,357
+
 Number of columns (attributes): 21
+
 Size: 235.5 mb
 
 **ii. summary statistics of several attributes (e.g. report mean, standard deviation)**
 The only attribute with meaningful mean and standard deviation:
+
 Attribute: Vict Age, Mean: 29.6, Standard Deviation: 21.8 
-	Other categorical variables with number of unique values, top value and count:
+
+Other categorical variables with number of unique values, top value and count:
+
 Attribute: Date Rptd, Unique: 1511, Top: “02/03/2023 12:00:00 AM”, Top Count: 925
+
 Attribute: DATE OCC, Unique: 1511, Top: “12/02/2022 12:00:00 AM”, Top Count: 1132
+
 Attribute: AREA NAME, Unique: 21, Top: “Central”, Top Count: 61416
+
 Attribute: Crm Cd Desc, Unique: 139, Top: “VEHICLE - STOLEN”, Top Count: 96751
+
 Attribute: Status, Unique: 6, Top: “IC”, Top Count: 721221
+
 Attribute: LOCATION, Unique: 65040, Top: “800 N ALAMEDA ST”, Top Count: 1717
