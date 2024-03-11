@@ -1,14 +1,14 @@
 # 550 Database Final Project - CrimeSearchLA
 
-##**Application/Website Idea**
+## **Application/Website Idea**
 
 We want to create a searchable crime database platform named "CrimeSearchLA". This platform primarily serves as a robust search engine for crime records, enabling users, researchers, law enforcement, and journalists to access and analyze detailed crime data. The primary aim is to offer detailed insights into crime patterns, assist in academic and professional research, and improve public awareness.
 
-##**A 1-2 sentence description of the dataset**
+## **A 1-2 sentence description of the dataset**
 
 The dataset consists of detailed crime records for Los Angeles from 2020 onwards, with fields including dates, times, locations described to the nearest hundred block, types of crimes, weapon used, victim demographics, and status of cases. Each incident is identified by a unique record number (DR_NO), with additional information about the crime's circumstances and the involved parties. 
 
-##**A link to where you found the dataset**
+## **A link to where you found the dataset**
 https://catalog.data.gov/dataset/crime-data-from-2020-to-present
 
 **i. relevant size statistics**
