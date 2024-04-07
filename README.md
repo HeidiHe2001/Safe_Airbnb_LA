@@ -1,13 +1,20 @@
-# 550 Database Final Project - CrimeSearchLA
+# 550 Database Final Project - AirbnbSafety-LA
 
 ### **Application/Website Idea**
-We want to create a searchable crime database platform named "CrimeSearchLA". This platform primarily serves as a robust search engine for crime records, enabling users, researchers, law enforcement, and journalists to access and analyze detailed crime data. The primary aim is to offer detailed insights into crime patterns, assist in academic and professional research, and improve public awareness.
+Our tool provides a convenient way to view Airbnb listings alongside nearby crime rate data. By integrating Airbnb's listing information with crime data from reliable sources, users can make more informed decisions when choosing accommodations.
 
-### **A 1-2 sentence description of the dataset**
-The dataset consists of detailed crime records for Los Angeles from 2020 onwards, with fields including dates, times, locations described to the nearest hundred block, types of crimes, weapon used, victim demographics, and status of cases. Each incident is identified by a unique record number (DR_NO), with additional information about the crime's circumstances and the involved parties. 
+Key Features:
+
+- View Airbnb listings with detailed descriptions and ratings.
+- Explore an interactive map displaying the locations of Airbnb listings and nearby crime incidents.
+- Access crime rate statistics, including types of crimes reported and their frequency in the vicinity of each listing.
+- Customize search filters to narrow down listings based on preferred crime rate levels.
+With our tool, users can easily assess the safety of an area before booking an Airbnb stay, empowering them to prioritize their peace of mind and security while travelling.
 
 ### **A link to where you found the dataset**
 ## 1. https://catalog.data.gov/dataset/crime-data-from-2020-to-present
+
+The dataset consists of detailed crime records for Los Angeles from 2020 onwards, with fields including dates, times, locations described to the nearest hundred block, types of crimes, weapon used, victim demographics, and status of cases. Each incident is identified by a unique record number (DR_NO), with additional information about the crime's circumstances and the involved parties.
 
 **i. relevant size statistics**
 Number of rows: 901,357
@@ -36,6 +43,8 @@ Attribute: Status, Unique: 6, Top: “IC”, Top Count: 721221
 Attribute: LOCATION, Unique: 65040, Top: “800 N ALAMEDA ST”, Top Count: 1717
 
 ## 2. https://data.insideairbnb.com/united-states/ca/los-angeles/2023-12-03/data/listings.csv
+
+This dataset provides valuable insights into Airbnb listings in Los Angeles, including details about hosts, neighborhoods, pricing, availability, and review metrics. 
 
 **i. relevant size statistics**
 Number of rows: 45,596
