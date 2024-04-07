@@ -7,7 +7,7 @@ We want to create a searchable crime database platform named "CrimeSearchLA". Th
 The dataset consists of detailed crime records for Los Angeles from 2020 onwards, with fields including dates, times, locations described to the nearest hundred block, types of crimes, weapon used, victim demographics, and status of cases. Each incident is identified by a unique record number (DR_NO), with additional information about the crime's circumstances and the involved parties. 
 
 ### **A link to where you found the dataset**
-https://catalog.data.gov/dataset/crime-data-from-2020-to-present
+## 1. https://catalog.data.gov/dataset/crime-data-from-2020-to-present
 
 **i. relevant size statistics**
 Number of rows: 901,357
@@ -34,3 +34,35 @@ Attribute: Crm Cd Desc, Unique: 139, Top: “VEHICLE - STOLEN”, Top Count: 967
 Attribute: Status, Unique: 6, Top: “IC”, Top Count: 721221
 
 Attribute: LOCATION, Unique: 65040, Top: “800 N ALAMEDA ST”, Top Count: 1717
+
+## 2. https://data.insideairbnb.com/united-states/ca/los-angeles/2023-12-03/data/listings.csv.gz
+
+**i. relevant size statistics**
+Number of rows: 45,596
+
+Number of columns (attributes): 18
+
+Size: 9.1 mb
+
+**ii. summary statistics of several attributes (e.g. report mean, standard deviation)**
+
+Attribute: calculated_host_listings_count, Mean: 22.51, Standard Deviation: 82.55
+
+Attribute: review_scores_communication, Mean: 4.84, Standard Deviation: 0.43
+
+Attribute: review_scores_value, Mean: 4.68, Standard Deviation: 0.51
+
+Attribute: calculated_host_listings_count_private_rooms, Mean: 1.96, Standard Deviation: 7.78
+
+Attribute: calculated_host_listings_count_shared_rooms, Mean: 0.21, Standard Deviation: 2.19
+
+Attribute: calculated_host_listings_count_shared_rooms, Mean: 1.44, Standard Deviation: 1.70
+
+
+
+
+
+
+
+
+
