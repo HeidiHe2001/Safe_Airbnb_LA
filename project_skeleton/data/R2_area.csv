@@ -1,0 +1,205 @@
+AREA,AREA NAME,SUBAREA NAME
+1,Central,Bunker Hill/Historic Core
+1,Central, Central City East
+1,Central, Chinatown
+1,Central, Civic Center
+1,Central, Downtown Los Angeles
+1,Central, Fashion District
+1,Central, Jewelry District
+1,Central, Little Tokyo
+1,Central, Solano Canyon
+1,Central, South Park-Entertainment
+1,Central, Toy District
+1,Central, Old Bank District
+1,Central, Artists Lofts
+1,Central, Financial District
+2,Rampart,Angelino Heights
+2,Rampart, Echo Park
+2,Rampart, Historic Filipinotown
+2,Rampart, Lafayette Park
+2,Rampart, MacArthur Park
+2,Rampart, Pico-Union
+2,Rampart, Temple-Beaudry
+2,Rampart, Virgil Village
+2,Rampart, Westlake
+3,Southwest,Adams-Normandie
+3,Southwest, Baldwin Hills
+3,Southwest, Baldwin Village
+3,Southwest, Baldwin Vista
+3,Southwest, Crenshaw
+3,Southwest, Exposition Park
+3,Southwest, Jefferson Park
+3,Southwest, Leimert Park
+3,Southwest, Union Square
+3,Southwest, University Park
+3,Southwest, Village Green
+3,Southwest, West Adams
+3,Southwest, Western Heights
+4,Hollenbeck,Aliso Village
+4,Hollenbeck, Boyle Heights
+4,Hollenbeck, El Sereno
+4,Hollenbeck, Estrada Court
+4,Hollenbeck, Hermon
+4,Hollenbeck, Hillside Village
+4,Hollenbeck, Lincoln Heights
+4,Hollenbeck, Montecito Heights
+4,Hollenbeck, Monterey Hills
+4,Hollenbeck, Pico Gardens
+4,Hollenbeck, Ramona Gardens
+4,Hollenbeck, Rose Hills Courts
+4,Hollenbeck, University Hills
+5,Harbor,Harbor City
+5,Harbor, Harbor Gateway
+5,Harbor, San Pedro
+5,Harbor, Terminal Island
+5,Harbor, Wilmington
+6,Hollywood,Argyle
+6,Hollywood, Cahuenga Pass
+6,Hollywood, East Hollywood
+6,Hollywood, Hobart
+6,Hollywood, Hollywood
+6,Hollywood, Hollywood Hills
+6,Hollywood, Hollywood/La Brea
+6,Hollywood, Little Armenia
+6,Hollywood, Los Feliz
+6,Hollywood, Melrose District
+6,Hollywood, Mount Olympus
+6,Hollywood, Sierra Vista
+6,Hollywood, Spaulding Square
+6,Hollywood, Sunset Strip
+6,Hollywood, Thai Town
+6,Hollywood, Vine/Willoughby
+7,Wilshire,Arlington Heights
+7,Wilshire, Brookside Park
+7,Wilshire, Carthay Circle
+7,Wilshire, Country Club Park
+7,Wilshire, Fairfax
+7,Wilshire, Greater Wilshire
+7,Wilshire, Hancock Park
+7,Wilshire, Larchmont Village
+7,Wilshire, Little Ethiopia
+7,Wilshire, Melrose
+7,Wilshire, Mid-City
+7,Wilshire, Mid-Wilshire
+7,Wilshire, Miracle Mile
+7,Wilshire, Park La Brea
+7,Wilshire, South Carthay
+7,Wilshire, Wellington Square
+7,Wilshire, Wilshire Center
+7,Wilshire, Wilshire Vista
+7,Wilshire, Windsor Square
+7,Wilshire, Olympic Park
+8,West LA,Bel Air
+8,West LA, Benedict Canyon
+8,West LA, Beverly Crest
+8,West LA, Beverly Glen
+8,West LA, Beverlywood
+8,West LA, Brentwood
+8,West LA, Century City
+8,West LA, Cheviot Hills
+8,West LA, Crestview
+8,West LA, Glen Ridge
+8,West LA, Pacific Palisades
+8,West LA, Rancho Park
+8,West LA, Roscomare Valley
+8,West LA, Rustic Canyon
+8,West LA, San Vicente
+8,West LA, Sawtelle
+8,West LA, West Los Angeles
+8,West LA, Westwood
+8,West LA, La Cienega Heights
+8,West LA, Santa Monica Canyon
+9,Van Nuys,Sepulveda
+9,Van Nuys, Sherman Oaks
+9,Van Nuys, Valley Glen
+9,Van Nuys, Van Nuys
+9,Van Nuys, Ventura Business District
+9,Van Nuys, West Van Nuys
+10,West Valley,Encino
+10,West Valley, Lake Balboa
+10,West Valley, Mandeville Canyon
+10,West Valley, Northridge
+10,West Valley, Reseda
+10,West Valley, Tarzana
+10,West Valley, Warner Center
+11,Northeast,Atwater Village
+11,Northeast, Cypress Park
+11,Northeast, Eagle Rock
+11,Northeast, East Hollywood
+11,Northeast, Echo Park
+11,Northeast, Elysian Park
+11,Northeast, Elysian Valley
+11,Northeast, Franklin Hills
+11,Northeast, Garvanza
+11,Northeast, Glassell Park
+11,Northeast, Highland Park
+11,Northeast, Los Feliz
+11,Northeast, Mount Washington
+11,Northeast, Silver Lake
+11,Northeast, Solano Canyon
+12,77th Street,Athens Park
+12,77th Street, Chesterfield Square
+12,77th Street, Gramercy Park
+12,77th Street, Hyde Park
+12,77th Street, South Park-51st and Menlo
+12,77th Street, Vermont Knolls
+12,77th Street, Vermont Park
+12,77th Street, View Heights
+12,77th Street, Morningside Park
+12,77th Street, West Park Terrance
+13,Newton,Fashion District
+13,Newton, Pueblo Del Rio
+13,Newton, South Park-Entertainment
+14,Pacific,Del Rey
+14,Pacific, Manchester Square
+14,Pacific, Mar Vista
+14,Pacific, Oakwood
+14,Pacific, Palms
+14,Pacific, Playa del Rey
+14,Pacific, Playa Vista
+14,Pacific, Venice
+14,Pacific, Westchester
+15,N Hollywood,Cahuenga Pass
+15,N Hollywood, North Hollywood
+15,N Hollywood, Studio City
+15,N Hollywood, Sun Valley
+15,N Hollywood, Toluca Lake
+15,N Hollywood, Toluca Woods
+15,N Hollywood, Universal City
+15,N Hollywood, Valley Glen
+15,N Hollywood, Valley Village
+15,N Hollywood, West Toluca
+16,Foothill,La Tuna Canyon
+16,Foothill, Lake View Terrace
+16,Foothill, Pacoima
+16,Foothill, Shadow Hills
+16,Foothill, Sun Valley
+16,Foothill, Sunland
+16,Foothill, Tujunga
+17,Devonshire,Chatsworth
+17,Devonshire, Granada Hills
+17,Devonshire, Northridge
+17,Devonshire, Porter Ranch
+18,Southeast,Athens Park
+18,Southeast, Avalon Gardens
+18,Southeast, Gardena Boulevard
+18,Southeast, Hacienda Village
+18,Southeast, Harbor Gateway
+18,Southeast, Imperial Courts
+18,Southeast, Jordan Downs
+18,Southeast, Nickerson Gardens
+18,Southeast, Parkside Manor
+18,Southeast, Watts
+19,Mission,Arleta
+19,Mission, North Hills
+19,Mission, Mission Hills
+19,Mission, Panorama City
+19,Mission, Sylmar
+19,Mission, Knollwood
+19,Mission, Blythe Street
+20,Olympic,Koreatown
+20,Olympic, Arlington Heights
+21,Topanga,Canoga Park
+21,Topanga, West Hills
+21,Topanga, Winnetka
+21,Topanga, Woodland Hills
