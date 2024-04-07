@@ -35,7 +35,7 @@ Attribute: Status, Unique: 6, Top: “IC”, Top Count: 721221
 
 Attribute: LOCATION, Unique: 65040, Top: “800 N ALAMEDA ST”, Top Count: 1717
 
-## 2. https://data.insideairbnb.com/united-states/ca/los-angeles/2023-12-03/data/listings.csv.gz
+## 2. https://data.insideairbnb.com/united-states/ca/los-angeles/2023-12-03/data/listings.csv
 
 **i. relevant size statistics**
 Number of rows: 45,596
