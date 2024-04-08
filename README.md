@@ -65,7 +65,7 @@ Attribute: calculated_host_listings_count_private_rooms, Mean: 1.96, Standard De
 
 Attribute: calculated_host_listings_count_shared_rooms, Mean: 0.21, Standard Deviation: 2.19
 
-Attribute: calculated_host_listings_count_shared_rooms, Mean: 1.44, Standard Deviation: 1.70
+Attribute: reviews_per_month, Mean: 1.44, Standard Deviation: 1.70
 
 
 
