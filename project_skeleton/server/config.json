@@ -1,9 +1,9 @@
 {
-  "rds_host": "",
+  "rds_host": "database-1.c7uq84c4kqir.us-east-2.rds.amazonaws.com",
   "rds_port": "3306",
-  "rds_user": "",
-  "rds_password": "",
-  "rds_db": "SWIFTIFY",
+  "rds_user": "admin",
+  "rds_password": "aScC*t{531yA1m8Y",
+  "rds_db": "CRIME_AIRBNB",
   "server_host": "localhost",
   "server_port": "8080"
 }
