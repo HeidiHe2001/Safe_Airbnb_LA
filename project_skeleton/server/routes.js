@@ -14,12 +14,12 @@ connection.connect((err) => err && console.log(err));
 
 // Route 1: GET /authors/:type
 const authors = async function(req, res) {
-  const names = ['Jingle Wang', 'Ziqi He', 'Lingpei Luo', 'Guangqiuse Hu'];
+  const names = ['Jingle Wang, ', 'Ziqi He, ', 'Lingpei Luo, ', 'Guangqiuse Hu'];
   const gitnames = ['gillianwang0325', 'HeidiHe2001', 'JLmm123', 'violahu930']
   if (req.params.type === 'names') {
-    res.json({ name: names });
+    res.json({ names: names });
   } else if (req.params.type === 'gitnames') {
-    res.json({ pennkey: gitnames });
+    res.json({ gitnames: gitnames });
   } else {
     res.status(400).json({});
   }
@@ -38,7 +38,10 @@ const random = async function(req, res) {
       console.log(err);
       res.json({});
     } else {
-      res.json(data);
+      res.json({
+        id: data[0].ID,
+        airbnb_name: data[0].AIRBNB_NAME
+      });
     }
   });
 }
@@ -66,12 +69,21 @@ const listing = async function(req, res) {
 // Route 4: GET /neighborhood
 const neighborhood = async function(req, res) {
   // returns all neighborhood with the most Airbnb listings DESC
-  connection.query(`
+  const page = req.query.page;
+  const pageSize = req.query.page_size ? req.query.page_size : 10;
+  let taskQuery = `
   SELECT neighborhood, COUNT(*) AS listing_count
   FROM CRIME_AIRBNB.Airbnb a
   GROUP BY a.neighborhood
-  ORDER BY COUNT(*) DESC;
-  `, (err, data) => {
+  ORDER BY COUNT(*) DESC
+  `;
+  if (!page) {
+    taskQuery  = taskQuery
+  } else {
+    const offset = (page - 1) * pageSize;
+    taskQuery += ` LIMIT ${pageSize} OFFSET ${offset}`;
+  }
+  connection.query(taskQuery, (err, data) => {
     if (err) {
       console.log(err);
       res.json([]);
@@ -169,7 +181,7 @@ const high_price_low_crime = async function(req, res) {
 
 // Route 8: GET /areas_statistics
 const areas_statistics = async function(req, res) {
-  // retrieve total_incidents in all areaa, unresolved_incident_rate 
+  // retrieve total_incidents in all areas, unresolved_incident_rate 
   // in areas, avg_price of Airbnbs, total_listings of Airbnbs, total_reviews of 
   // Airbnbs in this area
   connection.query(`
@@ -383,6 +395,41 @@ const rank = async function(req, res) {
   });
 }
 
+
+
+// Route 13: GET /neighbor/:subname
+const neighbor = async function(req, res) {
+  // given an neighborhood name, returns all information about the neighborhood
+  connection.query(`
+  SELECT * 
+  FROM CRIME_AIRBNB.Areas
+  WHERE CRIME_AIRBNB.Areas.SUBAREA_NAME = '${req.params.subname}';
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data);
+    }
+  });
+}
+
+// Route 14: GET /area/:areaname
+const area = async function(req, res) {
+  // given an neighborhood name, returns all information about the neighborhood
+  connection.query(`
+  SELECT CRIME_AIRBNB.Areas.SUBAREA_NAME FROM CRIME_AIRBNB.Areas
+  WHERE CRIME_AIRBNB.Areas.AREA_NAME = '${req.params.areaname}';
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data[0]);
+    }
+  });
+}
+
 module.exports = {
   authors,
   random,
@@ -395,5 +442,7 @@ module.exports = {
   search_listing,
   high_demand_low_crime,
   high_crime_listing,
-  rank
+  rank,
+  neighbor,
+  area
 }
