@@ -22,6 +22,7 @@ app.get('/search_listing', routes.search_listing);
 app.get('/high_demand_low_crime', routes.high_demand_low_crime);
 app.get('/high_crime_listing', routes.high_crime_listing);
 app.get('/rank', routes.rank);
+app.get('/neighbor/:subname', routes.neighbor);
 app.listen(config.server_port, () => {
   console.log(`Server running at http://${config.server_host}:${config.server_port}/`)
 });
