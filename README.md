@@ -1,4 +1,4 @@
-# 550 Database Final Project - AirbnbSafety-LA
+# 550 Database Final Project - SafeAirbnbLA
 
 ### **Application/Website Idea**
 Our tool provides a convenient way to view Airbnb listings alongside nearby crime rate data. By integrating Airbnb's listing information with crime data from reliable sources, users can make more informed decisions when choosing accommodations.
