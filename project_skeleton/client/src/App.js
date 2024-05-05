@@ -9,6 +9,7 @@ import AlbumsPage from './pages/AlbumsPage';
 import AirbnbsPage from './pages/AirbnbsPage';
 import AlbumInfoPage from './pages/AlbumInfoPage';
 import RankPage from './pages/RankPage';
+import AreaStatPage from './pages/AreaStatPage'
 
 // createTheme enables you to customize the look and feel of your app past the default
 // in this case, we only change the color scheme
@@ -34,6 +35,8 @@ export default function App() {
           <Route path="/neighborhood" element={<AlbumsPage />} />
           <Route path="/neighborhood/:album_id" element={<AlbumInfoPage />} />
           <Route path="/search_listing" element={<AirbnbsPage />} />
+          <Route path="/areas_statistics/:area_id" element={<AreaStatPage />} />
+          <Route path="/areas_statistics" element={<AreaStatPage />} />
           <Route path="/rank" element={<RankPage />} />
         </Routes>
       </BrowserRouter>
