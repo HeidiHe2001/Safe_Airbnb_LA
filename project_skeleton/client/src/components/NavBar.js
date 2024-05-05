@@ -1,46 +1,62 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material'
 import { NavLink } from 'react-router-dom';
+import { AppBar, Container, Toolbar, Typography, styled } from '@mui/material';
 
-// The hyperlinks in the NavBar contain a lot of repeated formatting code so a
-// helper component NavText local to the file is defined to prevent repeated code.
-function NavText({ href, text, isMain }) {
-  return (
-    <Typography
-      variant={isMain ? 'h5' : 'h7'}
-      noWrap
-      style={{
-        marginRight: '30px',
-        fontFamily: 'monospace',
-        fontWeight: 700,
-        letterSpacing: '.3rem',
-      }}
-    >
-      <NavLink
-        to={href}
-        style={{
-          color: 'inherit',
-          textDecoration: 'none',
-        }}
-      >
-        {text}
-      </NavLink>
-    </Typography>
-  )
-}
+// Custom styled component for the AppBar
+const StyledAppBar = styled(AppBar)({
+  background: 'linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)',
+});
 
-// Here, we define the NavBar. Note that we heavily leverage MUI components
-// to make the component look nice. Feel free to try changing the formatting
-// props to how it changes the look of the component.
+// Custom styled component for the main title
+const MainTitle = styled(Typography)({
+  marginRight: '50px',  // Increased spacing after the main title
+  fontFamily: 'Cursive',  // More distinct, stylized font for the main title
+  fontWeight: 900,
+  letterSpacing: '.5rem',
+  fontSize: '1.5rem',
+  '& a': {
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.3s ease',
+    '&:hover': {
+      color: '#3f51b5'  // More appealing hover color
+    }
+  }
+});
+
+// Custom styled component for other navigation links
+const NavText = styled(Typography)(({ theme }) => ({
+  marginRight: '30px',  // Space between each navigation option
+  fontFamily: 'sans-serif',
+  fontWeight: 700,
+  letterSpacing: '.3rem',
+  '& a': {
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'transform 0.2s ease-in-out, color 0.3s ease',
+    '&:hover': {
+      transform: 'scale(1.1)',
+      color: '#3f51b5'  // Same hover color for consistency
+    }
+  },
+  variant: 'h6'
+}));
+
 export default function NavBar() {
   return (
-    <AppBar position='static'>
+    <StyledAppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <NavText href='/' text='SWIFTIFY' isMain />
-          <NavText href='/albums' text='ALBUMS' />
-          <NavText href='/songs' text='SONGS' />
+          <MainTitle>
+            <NavLink to='/' exact>SAFE AIRBNB LA</NavLink>
+          </MainTitle>
+          <NavText>
+            <NavLink to='/neighborhoods'>NEIGHBORHOODS</NavLink>
+          </NavText>
+          <NavText>
+            <NavLink to='/listings'>LISTINGS</NavLink>
+          </NavText>
         </Toolbar>
       </Container>
-    </AppBar>
+    </StyledAppBar>
   );
 }
