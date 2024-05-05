@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import SongCard from '../components/SongCard';
+import ListingCard from '../components/ListingCard';
 import { formatDuration } from '../helpers/formatter';
 const config = require('../config.json');
 
@@ -73,7 +73,7 @@ export default function SongsPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
-      {selectedSongId && <SongCard songId={selectedSongId} handleClose={() => setSelectedSongId(null)} />}
+      {selectedSongId && <ListingCard songId={selectedSongId} handleClose={() => setSelectedSongId(null)} />}
       <h2>Search Songs</h2>
       <Grid container spacing={6}>
         <Grid item xs={8}>
