@@ -3,13 +3,13 @@ import { Button, Checkbox, Container, Grid, TextField, Slider, Typography } from
 import { DataGrid } from '@mui/x-data-grid';
 
 import ListingCard from '../components/ListingCard';
-import { formatDuration } from '../helpers/formatter';
 const config = require('../config.json');
 
 export default function AirbnbsPage() {
 
   const [pageSize, setPageSize] = useState(10);
-  const [listings, setListings] = useState([]);
+  const [data, setData] = useState([]);
+  const [listingId, setListingId] = useState([]);
 
   const [title, setTitle] = useState('');
   const [stars, setStars] = useState([0, 5]);
@@ -21,7 +21,7 @@ export default function AirbnbsPage() {
     fetch(`http://${config.server_host}:${config.server_port}/search_listing`)
       .then(res => res.json())
       .then(resJson => {
-        setListings(resJson.map(listing => ({ id: listing.id, ...listing })));
+        setData(resJson.map((listing) => ({ id: listing.id, ...listing })));
       });
   }, []);
 
@@ -30,23 +30,23 @@ export default function AirbnbsPage() {
     fetch(`http://${config.server_host}:${config.server_port}/search_listing?${query}`)
       .then(res => res.json())
       .then(resJson => {
-        setListings(resJson.map(listing => ({ id: listing.id, ...listing })));
+        setData(resJson.map((listing) => ({ id: listing.id, ...listing })));
       });
   }
 
   const columns = [
-    { field: 'title', headerName: 'Title', width: 200 },
-    { field: 'stars', headerName: 'Stars', width: 100 },
-    { field: 'bedrooms', headerName: 'Bedrooms', width: 100 },
-    { field: 'bathrooms', headerName: 'Bathrooms', width: 100 },
-    { field: 'minNights', headerName: 'Minimum Nights', width: 120 },
+    { field: 'title', headerName: 'Title', width: 300},
+    { field: 'stars', headerName: 'Stars', width: 200 },
+    { field: 'bedrooms', headerName: 'Bedrooms', width: 200 },
+    { field: 'bathrooms', headerName: 'Bathrooms', width: 200 },
+    { field: 'minNights', headerName: 'Minimum Nights', width: 200},
   ];
 
 
   return (
     <Container>
       <h2>Search Airbnb Listings</h2>
-      <Grid container spacing={2}>
+      <Grid container spacing={6}>
         <Grid item xs={12}>
           <TextField
             fullWidth
@@ -63,6 +63,7 @@ export default function AirbnbsPage() {
             valueLabelDisplay="auto"
             min={0}
             max={5}
+            valueLabelFormat={value => `${value} Stars`}
           />
         </Grid>
         <Grid item xs={6}>
@@ -73,6 +74,7 @@ export default function AirbnbsPage() {
             valueLabelDisplay="auto"
             min={0}
             max={10}
+            valueLabelFormat={value => `${value} Bedroom${value !== 1 ? 's' : ''}`}
           />
         </Grid>
         <Grid item xs={6}>
@@ -83,6 +85,7 @@ export default function AirbnbsPage() {
             valueLabelDisplay="auto"
             min={0}
             max={10}
+            valueLabelFormat={value => `${value} Bathroom${value !== 1 ? 's' : ''}`}
           />
         </Grid>
         <Grid item xs={6}>
@@ -93,13 +96,14 @@ export default function AirbnbsPage() {
             valueLabelDisplay="auto"
             min={0}
             max={30}
+            valueLabelFormat={value => `${value} Night${value !== 1 ? 's' : ''}`}
           />
         </Grid>
       </Grid>
-      <Button onClick={fetchListings} style={{ marginTop: 20 }}>Search</Button>
+      <Button onClick={fetchListings} style={{ marginTop: 20, left: '50%', transform: 'translateX(-50%)' }}>Search</Button>
       <h2>Results</h2>
       <DataGrid
-        rows={listings}
+        rows={data}
         columns={columns}
         pageSize={pageSize}
         rowsPerPageOptions={[5, 10, 25]}
@@ -108,4 +112,5 @@ export default function AirbnbsPage() {
       />
     </Container>
   );
+
 }
