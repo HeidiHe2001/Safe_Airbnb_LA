@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Box, Container } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-
+import LazyTable from '../components/LazyTable';
 const config = require('../config.json');
 
-export default function NeighborhoodPage() {
+export default function AlbumsPage() {
   const [neighborhood, setNeighborhood] = useState([]);
 
   useEffect(() => {
@@ -21,10 +21,38 @@ export default function NeighborhoodPage() {
   const format3 = { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' };
   const format4 = { display: 'grid', justifyContent: 'space-evenly' };
 
+  const neighborListColumns = [
+    {
+      field: 'neighborhood',
+      headerName: 'Neighborhood',
+      renderCell: (row) => <NavLink to={`/airbnb_list/${row.neighborhood}`}>{row.neighborhood}</NavLink>
+    },
+    {
+      field: 'listing_count',
+      headerName: 'Total Numbers of Airbnb Listings'
+    },
+  ];
+
   return (
     // TODO (TASK 22): Try out the different provided formatting options by replacing “format1”  in the Container's style property with the other provided options.
     // TODO (TASK 22): Choose the one that displays all the albums in a fluid grid.
-    <Container style={format1}>
+    <>
+    <iframe 
+      src="https://www.google.com/maps/d/embed?mid=1HwsLepsrnWEI1Hxi-ivdp1WSjHI&hl=en&ehbc=2E312F" 
+      width="1280" 
+      height="480"
+      title="Google Map"
+      style={{ display: 'block', margin: 'auto' }} // Center the iframe horizontally
+    ></iframe>
+    
+   
+  <LazyTable
+        route={`http://${config.server_host}:${config.server_port}/neighborhood`}
+        columns={neighborListColumns}
+        defaultPageSize={10} 
+        rowsPerPageOptions={[10, 20]}/>
+
+    {/* <Container style={format1}>
       {neighborhood.map((neighborhood) =>
         <Box
           key={neighborhood.neighborhood}
@@ -40,6 +68,7 @@ export default function NeighborhoodPage() {
           <h4><NavLink to={`/airbnb_list/${neighborhood.neighborhood}`}>{neighborhood.neighborhood}</NavLink></h4> 
         </Box>
       )}
-    </Container>
+    </Container> */}
+    </>
   );
 }
