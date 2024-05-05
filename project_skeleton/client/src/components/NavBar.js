@@ -50,10 +50,13 @@ export default function NavBar() {
             <NavLink to='/' exact>SAFE AIRBNB LA</NavLink>
           </MainTitle>
           <NavText>
-            <NavLink to='/neighborhoods'>NEIGHBORHOODS</NavLink>
+            <NavLink to='/neighborhood'>NEIGHBORHOODS</NavLink>
           </NavText>
           <NavText>
-            <NavLink to='/listings'>LISTINGS</NavLink>
+            <NavLink to='/rank'>AREA RANK</NavLink>
+          </NavText>
+          <NavText>
+            <NavLink to='/search_listing'>SEARCH</NavLink>
           </NavText>
         </Toolbar>
       </Container>
