@@ -31,6 +31,7 @@ const random = async function(req, res) {
   connection.query(`
     SELECT *
     FROM Airbnb
+    Where availability_365 <> 0
     ORDER BY RAND()
     LIMIT 1
   `, (err, data) => {
