@@ -35,8 +35,7 @@ export default function HomePage() {
       field: 'airbnb_name',
       headerName: 'Airbnb',
       renderCell: (row) => 
-      <Link onClick={() => setSelectedId(row.id)}>{row.airbnb_name}</Link> 
-      // A Link component is used just for formatting purposes
+      <Link onClick={() => setSelectedId(row.id)}>{row.airbnb_name}</Link>
     },
     {
       field: 'price',
@@ -87,7 +86,6 @@ export default function HomePage() {
       defaultPageSize={3} 
       rowsPerPageOptions={[1, 3]}/>
       <Divider />
-      {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
       <h2>Most Popular Airbnb Listings</h2>
       {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
       <LazyTable

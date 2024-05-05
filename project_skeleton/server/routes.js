@@ -252,7 +252,7 @@ const search_listing = async function(req, res) {
           GROUP BY crime.AREA) AS subquery_alias
     ORDER BY total_serious_crimes)
     
-    SELECT id
+    SELECT id, abnb.airbnb_name, abnb.star, abnb.BEDROOMS, abnb.BATHS, abnb.MINIMUM_NIGHTS, abnb.price
     FROM CRIME_AIRBNB.Airbnb abnb
     JOIN CRIME_AIRBNB.Areas area on abnb.NEIGHBORHOOD = area.SUBAREA_NAME
     JOIN crime_summary cs ON area.AREA = cs.area
