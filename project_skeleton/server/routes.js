@@ -213,7 +213,7 @@ const areas_statistics = async function(req, res) {
   if (areaid !== 0) {
     taskQuery += ` WHERE cs.AREA = ${areaid}`;
   }
-  taskQuery += ` ORDER BY cs.total_incidents DESC;`;
+  taskQuery += ` ORDER BY cs.AREA;`;
   connection.query(taskQuery, (err, data) => {
     if (err) {
       console.log(err);
