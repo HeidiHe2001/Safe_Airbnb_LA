@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Divider, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Container, Divider, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Link } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 const config = require('../config.json');
 
 const AreaStatisticPage = () => {
@@ -30,11 +31,16 @@ const AreaStatisticPage = () => {
   return (
     <Container>
       <h1>Area Statistics</h1>
+            <h4><Link component={NavLink} to="/areas_statistics" underline="none">
+                Check All Area Statistics HERE
+            </Link></h4>
+            <Divider />
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>AREA</TableCell>
+              <TableCell>Area ID</TableCell>
+              <TableCell>Area Name</TableCell>
               <TableCell>Total Incidents</TableCell>
               <TableCell>Unresolved Incident Rate</TableCell>
               <TableCell>Average Price</TableCell>
@@ -46,11 +52,12 @@ const AreaStatisticPage = () => {
             {filteredData.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>{item.AREA}</TableCell>
-                <TableCell>{item.total_incidents}</TableCell>
-                <TableCell>{item.unresolved_incident_rate}</TableCell>
-                <TableCell>{item.avg_price}</TableCell>
-                <TableCell>{item.total_listings}</TableCell>
-                <TableCell>{item.total_reviews}</TableCell>
+                <TableCell>{item.AREANAME}</TableCell>
+                <TableCell>{item.total_incidents.toLocaleString()}</TableCell>
+                <TableCell><span>{parseFloat((item.unresolved_incident_rate * 100).toFixed(3))}%</span></TableCell>
+                <TableCell><span>${parseFloat(item.avg_price).toFixed(2)}</span></TableCell>
+                <TableCell>{item.total_listings.toLocaleString()}</TableCell>
+                <TableCell>{item.total_reviews.toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>

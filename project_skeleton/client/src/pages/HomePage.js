@@ -91,7 +91,7 @@ export default function HomePage() {
   )} <FontAwesomeIcon icon={faStar} />
       </h2>
       <Divider />
-      <h2>Top 3 Safest Areas</h2>
+      <h2>Top 3 Safest and Expensive Areas </h2>
       <LazyTable 
       route={`http://${config.server_host}:${config.server_port}/high_price_low_crime`} 
       columns={neighborColumns} 
