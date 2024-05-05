@@ -31,6 +31,7 @@ const random = async function(req, res) {
   connection.query(`
     SELECT *
     FROM Airbnb
+    Where availability_365 <> 0
     ORDER BY RAND()
     LIMIT 1
   `, (err, data) => {
@@ -121,7 +122,7 @@ const airbnb_list = async function(req, res) {
   // Given subarea, retrieve all airbnb in that area with id
   const subarea = req.params.subarea;
   connection.query(`
-  SELECT id
+  SELECT *
   FROM CRIME_AIRBNB.Airbnb a
   JOIN CRIME_AIRBNB.Areas ON CRIME_AIRBNB.Areas.SUBAREA_NAME= a.neighborhood
   WHERE CRIME_AIRBNB.Areas.SUBAREA_NAME LIKE '%${subarea}%';
@@ -179,12 +180,13 @@ const high_price_low_crime = async function(req, res) {
   });
 }
 
-// Route 8: GET /areas_statistics
+// Route 8: GET /areas_statistics/:areaid
 const areas_statistics = async function(req, res) {
   // retrieve total_incidents in all areas, unresolved_incident_rate 
   // in areas, avg_price of Airbnbs, total_listings of Airbnbs, total_reviews of 
   // Airbnbs in this area
-  connection.query(`
+  const areaid = req.params.areaid ?? 0;
+  let taskQuery = `
   WITH crime_summary AS (
     SELECT AREA, COUNT(*) AS total_incidents,
     AVG(CASE WHEN Status = 'IC' THEN 1 ELSE 0 END) AS unresolved_incident_rate
@@ -193,7 +195,7 @@ const areas_statistics = async function(req, res) {
     GROUP BY AREA),
     
   airbnb_summary AS (
-    SELECT CRIME_AIRBNB.Areas.AREA AS AREA, AVG(CRIME_AIRBNB.Airbnb.price) AS avg_price, COUNT(*) AS total_listings
+    SELECT CRIME_AIRBNB.Areas.AREA AS AREA, CRIME_AIRBNB.Areas.AREA_NAME AS AREANAME, AVG(CRIME_AIRBNB.Airbnb.price) AS avg_price, COUNT(*) AS total_listings
     FROM CRIME_AIRBNB.Airbnb JOIN CRIME_AIRBNB.Areas ON CRIME_AIRBNB.Airbnb.neighborhood = CRIME_AIRBNB.Areas.SUBAREA_NAME
     GROUP BY CRIME_AIRBNB.Areas.AREA),
     
@@ -203,12 +205,16 @@ const areas_statistics = async function(req, res) {
     GROUP BY area.AREA
     )
     
-  SELECT cs.AREA, cs.total_incidents, cs.unresolved_incident_rate, asum.avg_price, asum.total_listings, pa.total_reviews
+  SELECT cs.AREA, asum.AREANAME, cs.total_incidents, cs.unresolved_incident_rate, asum.avg_price, asum.total_listings, pa.total_reviews
     FROM crime_summary cs
     LEFT JOIN airbnb_summary asum ON cs.AREA = asum.AREA
     LEFT JOIN popular_area pa ON cs.AREA = pa.AREA
-    ORDER BY cs.total_incidents DESC;
-  `, (err, data) => {
+  `
+  if (areaid !== 0) {
+    taskQuery += ` WHERE cs.AREA = ${areaid}`;
+  }
+  taskQuery += ` ORDER BY cs.total_incidents DESC;`;
+  connection.query(taskQuery, (err, data) => {
     if (err) {
       console.log(err);
       res.json([]);
