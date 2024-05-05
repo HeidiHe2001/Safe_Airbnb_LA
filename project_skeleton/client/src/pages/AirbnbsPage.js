@@ -18,7 +18,7 @@ export default function AirbnbsPage() {
   const [minNights, setMinNights] = useState([0, 30]);
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/search_songs`)
+    fetch(`http://${config.server_host}:${config.server_port}/search_listing`)
       .then(res => res.json())
       .then(resJson => {
         setListings(resJson.map(listing => ({ id: listing.id, ...listing })));
