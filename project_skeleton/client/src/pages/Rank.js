@@ -21,7 +21,7 @@ export default function Rank() {
             </Typography>
             <Divider />
             <Link component={NavLink} to="/" underline="none">
-                Go back to home
+                Go Back Homepage
             </Link>
             {rankData.length > 0 ? (
                 <ul>
