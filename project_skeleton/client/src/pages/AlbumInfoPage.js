@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
-import SongCard from '../components/SongCard';
+import ListingCard from '../components/ListingCard';
 import { formatDuration, formatReleaseDate } from '../helpers/formatter';
 const config = require('../config.json');
 
@@ -26,7 +26,7 @@ export default function AlbumInfoPage() {
 
   return (
     <Container>
-      {selectedSongId && <SongCard songId={selectedSongId} handleClose={() => setSelectedSongId(null)} />}
+      {selectedSongId && <ListingCard songId={selectedSongId} handleClose={() => setSelectedSongId(null)} />}
       <Stack direction='row' justify='center'>
         <img
           key={albumData.album_id}
@@ -66,7 +66,7 @@ export default function AlbumInfoPage() {
                   </Link>
                 </TableCell>
                 <TableCell key='Plays'>Replace me</TableCell>
-                <TableCell key='Duration'>Replace me (use the formatDuration helper function, see SongCard.js for an example)</TableCell>
+                <TableCell key='Duration'>Replace me (use the formatDuration helper function, see ListingCard.js for an example)</TableCell>
               </TableRow>
             }
           </TableBody>
