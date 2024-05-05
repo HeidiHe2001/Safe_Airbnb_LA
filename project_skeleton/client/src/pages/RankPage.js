@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Divider, Link, Typography, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Container, Divider, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
 
 const config = require('../config.json');
 
 export default function Rank() {
     const [rankData, setRankData] = useState([]);
     const [page, setPage] = useState(1);
-    const pageSize = 10;  // Default page size
 
     useEffect(() => {
         // Fetch ranking data from the /rank endpoint

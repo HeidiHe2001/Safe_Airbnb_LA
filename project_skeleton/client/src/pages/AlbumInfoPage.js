@@ -21,12 +21,12 @@ export default function AlbumInfoPage() {
   }, [neighborhood]);
 
 
-  
+
   const abnbColumns = [
     {
       field: 'AIRBNB_NAME',
       headerName: 'Airbnb Title',
-      renderCell: (row) => <Link onClick={() => setSelectedListingId(row.ID)}>{row.AIRBNB_NAME}</Link> 
+      renderCell: (row) => <Link onClick={() => setSelectedListingId(row.ID)}>{row.AIRBNB_NAME}</Link>
       // A Link component is used just for formatting purposes
     },
     {
@@ -44,7 +44,7 @@ export default function AlbumInfoPage() {
     <LazyTable
       route={`http://${config.server_host}:${config.server_port}/airbnb_list/`}
       columns={abnbColumns}
-      defaultPageSize={10} 
+      defaultPageSize={10}
       rowsPerPageOptions={[10, 20]}
     />
   );
