@@ -17,22 +17,19 @@ export default function Rank() {
             });
     }, []);
 
-return (
+    return (
         <Container maxWidth="lg">
-            <h2>Neighborhood Rankings</h2>
-            <Divider />
-            <Link component={NavLink} to="/" underline="none">
-                Go back to home
-            </Link>
+            <h2 style={{ marginBottom: "20px" }}>Neighborhood Rankings</h2>
+            <Divider style={{ marginBottom: "20px" }} />
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Neighborhood</TableCell>
-                        <TableCell align="right">Crime Count</TableCell>
-                        <TableCell align="right">Severe Crime Count</TableCell>
-                        <TableCell align="right">Average Rating</TableCell>
-                        <TableCell align="right">Crime Rank</TableCell>
-                        <TableCell align="right">Rating Rank</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }}>Neighborhood</TableCell>
+                        <TableCell align="right" style={{ fontWeight: 'bold' }}>Crime Count</TableCell>
+                        <TableCell align="right" style={{ fontWeight: 'bold' }}>Severe Crime Count</TableCell>
+                        <TableCell align="right" style={{ fontWeight: 'bold' }}>Average Rating</TableCell>
+                        <TableCell align="right" style={{ fontWeight: 'bold' }}>Crime Rank</TableCell>
+                        <TableCell align="right" style={{ fontWeight: 'bold' }}>Rating Rank</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -50,8 +47,11 @@ return (
                     ))}
                 </TableBody>
             </Table>
-            <Button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</Button>
-            <Button onClick={() => setPage(page + 1)}>Next</Button>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+                <Button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</Button>
+                <Button onClick={() => setPage(page + 1)} style={{ marginLeft: "10px" }}>Next</Button>
+            </div>
         </Container>
     );
+
 }
