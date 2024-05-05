@@ -121,7 +121,7 @@ const airbnb_list = async function(req, res) {
   // Given subarea, retrieve all airbnb in that area with id
   const subarea = req.params.subarea;
   connection.query(`
-  SELECT id
+  SELECT *
   FROM CRIME_AIRBNB.Airbnb a
   JOIN CRIME_AIRBNB.Areas ON CRIME_AIRBNB.Areas.SUBAREA_NAME= a.neighborhood
   WHERE CRIME_AIRBNB.Areas.SUBAREA_NAME LIKE '%${subarea}%';
@@ -179,11 +179,12 @@ const high_price_low_crime = async function(req, res) {
   });
 }
 
-// Route 8: GET /areas_statistics
+// Route 8: GET /areas_statistics/:areaid
 const areas_statistics = async function(req, res) {
   // retrieve total_incidents in all areas, unresolved_incident_rate 
   // in areas, avg_price of Airbnbs, total_listings of Airbnbs, total_reviews of 
   // Airbnbs in this area
+  const areaid = req.params.areaid;
   connection.query(`
   WITH crime_summary AS (
     SELECT AREA, COUNT(*) AS total_incidents,
@@ -207,6 +208,7 @@ const areas_statistics = async function(req, res) {
     FROM crime_summary cs
     LEFT JOIN airbnb_summary asum ON cs.AREA = asum.AREA
     LEFT JOIN popular_area pa ON cs.AREA = pa.AREA
+    where cs.AREA = ${areaid}
     ORDER BY cs.total_incidents DESC;
   `, (err, data) => {
     if (err) {
