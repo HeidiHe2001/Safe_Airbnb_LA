@@ -294,7 +294,7 @@ const high_demand_low_crime = async function(req, res) {
     FROM CRIME_AIRBNB.Areas
     GROUP BY AREA
     HAVING COUNT(*) < (SELECT AVG(total_crimes) FROM crime_summary))
-  SELECT airbnb_name, price
+  SELECT id, airbnb_name, price
   FROM CRIME_AIRBNB.Airbnb
   WHERE neighborhood IN (
   SELECT CRIME_AIRBNB.Areas.SUBAREA_NAME NAME FROM low_crime_areas la
