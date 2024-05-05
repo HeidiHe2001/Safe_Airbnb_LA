@@ -6,7 +6,7 @@ import { createTheme } from "@mui/material/styles";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import AlbumsPage from './pages/AlbumsPage';
-import SongsPage from './pages/SongsPage';
+import AirbnbsPage from './pages/AirbnbsPage';
 import AlbumInfoPage from './pages/AlbumInfoPage'
 
 // createTheme enables you to customize the look and feel of your app past the default
@@ -32,7 +32,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/albums" element={<AlbumsPage />} />
           <Route path="/albums/:album_id" element={<AlbumInfoPage />} />
-          <Route path="/songs" element={<SongsPage />} />
+          <Route path="/search_listing" element={<AirbnbsPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
