@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { NavLink } from 'react-router-dom';
+import SubCard from './SubCard';
 
 const config = require('../config.json');
 
 export default function ListingCard({ Id, handleClose }) {
   const [listingData, setListingData] = useState({});
   const [neighborData, setNeighborData] = useState({});
+  const [showSubCard, setShowSubCard] = useState(false);
 
   useEffect(() => {
     fetch(`http://${config.server_host}:${config.server_port}/listing/${Id}`)
@@ -18,7 +20,7 @@ export default function ListingCard({ Id, handleClose }) {
           .then(neighborRes => neighborRes.json())
           .then(neighborResJson => {
             console.log("Neighbor Data:", neighborResJson);  // Log the neighbor data
-            setNeighborData(neighborResJson);
+            setNeighborData(neighborResJson[0]);
           })
           .catch(error => console.error('Error fetching neighborhood data:', error));
       }
@@ -30,6 +32,9 @@ export default function ListingCard({ Id, handleClose }) {
     { name: 'Minimum Nights', value: listingData.MINIMUM_NIGHTS },
     { name: 'Availability (out of 365)', value: listingData.AVAILABILITY_365 }
   ];
+  const handleShowSubCard = () => {
+    setShowSubCard(true);
+  };
 
   return (
     <Modal
@@ -58,12 +63,22 @@ export default function ListingCard({ Id, handleClose }) {
         </Typography>
         <Typography variant="h6" component="h2">
           Neighborhood:&nbsp;
-          <NavLink to={`/neighbor/${neighborData.SUBAREA_NAME}`}>{neighborData.SUBAREA_NAME}
-          </NavLink>
+          <Button variant="contained" onClick={handleShowSubCard} sx={{ ml: 2 }}>
+            {neighborData.SUBAREA_NAME}
+          </Button>
         </Typography>
+        {showSubCard && (
+          <SubCard
+            AREA_NAME={neighborData.AREA_NAME}
+            SUBAREA_NAME={neighborData.SUBAREA_NAME}
+            AREA={neighborData.AREA}
+            onClose={() => setShowSubCard(false)}
+          />
+        )}
         <Typography sx={{ mt: 2 }}>Bedroom(s): {listingData.BEDROOMS}</Typography>
         <Typography>Bed(s): {listingData.BEDS}</Typography>
         <Typography>Bath(s): {listingData.BATHS}</Typography>
+        
         <div style={{ marginTop: 20, height: 250 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
