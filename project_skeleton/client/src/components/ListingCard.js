@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { NavLink } from 'react-router-dom';
 import SubCard from './SubCard';
 
@@ -88,7 +88,9 @@ export default function ListingCard({ Id, handleClose }) {
             >
               <XAxis type='number' />
               <YAxis type='category' dataKey='name' width={100} />
-              <Bar dataKey='value' fill='#1976d2' barSize={20} />
+              <Tooltip />
+              <Bar dataKey='value' fill='#1976d2' barSize={20} 
+              label={{ position: 'right', fill: '#000' }}/>
             </BarChart>
           </ResponsiveContainer>
         </div>
