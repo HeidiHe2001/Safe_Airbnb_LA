@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const config = require('../config.json');
 
-export default function NeighborhoodPage() {
+export default function AlbumsPage() {
   const [neighborhood, setNeighborhood] = useState([]);
 
   useEffect(() => {
@@ -32,11 +32,11 @@ export default function NeighborhoodPage() {
           m={2}
           style={{ background: '#c5cae9', borderRadius: '16px', border: '2px solid #000' }}
         >
-          <img
+          {/* <img
             key={neighborhood.neighborhood}
             src={neighborhood.thumbnail_url}
             alt={`${neighborhood.neighborhood}`}
-          />
+          /> */}
           <h4><NavLink to={`/airbnb_list/${neighborhood.neighborhood}`}>{neighborhood.neighborhood}</NavLink></h4> 
         </Box>
       )}
