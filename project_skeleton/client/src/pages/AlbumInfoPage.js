@@ -55,9 +55,6 @@ export default function AlbumInfoPage() {
           </TableHead>
           <TableBody>
             {
-              // TODO (TASK 23): render the table content by mapping the songData array to <TableRow> elements
-              // Hint: the skeleton code for the very first row is provided for you. Fill out the missing information and then use a map function to render the rest of the rows.
-              // Hint: it may be useful to refer back to LazyTable.js
               <TableRow key={songData[0].song_id}>
                 <TableCell key='#'>{songData[0].number}</TableCell>
                 <TableCell key='Title'>

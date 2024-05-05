@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Box, Container } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import LazyTable from '../components/LazyTable';
 const config = require('../config.json');
