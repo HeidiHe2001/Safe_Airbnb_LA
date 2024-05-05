@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 const config = require('../config.json');
 
-export default function AlbumsPage() {
-  const [albums, setAlbums] = useState([]);
+export default function NeighborhoodPage() {
+  const [neighborhood, setNeighborhood] = useState([]);
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/albums`)
+    fetch(`http://${config.server_host}:${config.server_port}/neighborhood`)
       .then(res => res.json())
-      .then(resJson => setAlbums(resJson));
+      .then(resJson => setNeighborhood(resJson));
   }, []);
 
   // These formatting options leverage flexboxes, an incredibly powerful tool for formatting dynamic layouts.
@@ -25,19 +25,19 @@ export default function AlbumsPage() {
     // TODO (TASK 22): Try out the different provided formatting options by replacing “format1”  in the Container's style property with the other provided options.
     // TODO (TASK 22): Choose the one that displays all the albums in a fluid grid.
     <Container style={format1}>
-      {albums.map((album) =>
+      {neighborhood.map((neighborhood) =>
         <Box
-          key={album.album_id}
+          key={neighborhood.neighborhood}
           p={3}
           m={2}
           style={{ background: '#c5cae9', borderRadius: '16px', border: '2px solid #000' }}
         >
           <img
-            key={album.album_id}
-            src={album.thumbnail_url}
-            alt={`${album.title} album art`}
+            key={neighborhood.neighborhood}
+            src={neighborhood.thumbnail_url}
+            alt={`${neighborhood.neighborhood}`}
           />
-          <h4><NavLink to={`/albums/${album.album_id}`}>{album.title}</NavLink></h4>
+          <h4><NavLink to={`/airbnb_list/${neighborhood.neighborhood}`}>{neighborhood.neighborhood}</NavLink></h4> 
         </Box>
       )}
     </Container>
