@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Checkbox, Container, Grid, TextField, Slider, Typography } from '@mui/material';
+import { Button, Checkbox, Container, Grid, TextField, Slider, Typography, Link } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import ListingCard from '../components/ListingCard';
@@ -16,6 +16,7 @@ export default function AirbnbsPage() {
   const [bedrooms, setBedrooms] = useState([0, 10]);
   const [bathrooms, setBathrooms] = useState([0, 10]);
   const [minNights, setMinNights] = useState([0, 30]);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     fetch(`http://${config.server_host}:${config.server_port}/search_listing`)
@@ -35,11 +36,15 @@ export default function AirbnbsPage() {
   }
 
   const columns = [
-    { field: 'title', headerName: 'Title', width: 300},
-    { field: 'stars', headerName: 'Stars', width: 200 },
-    { field: 'bedrooms', headerName: 'Bedrooms', width: 200 },
-    { field: 'bathrooms', headerName: 'Bathrooms', width: 200 },
-    { field: 'minNights', headerName: 'Minimum Nights', width: 200},
+    { field: 'id', headerName: 'Airbnb ID', width: 150,
+    renderCell: (row) => 
+    <Link onClick={() => setSelectedId(row.id)}>{row.id}</Link> },
+    { field: 'airbnb_name', headerName: 'Title', width: 300},
+    { field: 'star', headerName: 'Stars', width: 150 },
+    { field: 'BEDROOMS', headerName: 'Bedrooms', width: 150 },
+    { field: 'BATHS', headerName: 'Bathrooms', width: 150 },
+    { field: 'MINIMUM_NIGHTS', headerName: 'Minimum Nights', width: 150},
+    { field: 'price', headerName: 'Price', width: 150}
   ];
 
 
@@ -101,6 +106,7 @@ export default function AirbnbsPage() {
         </Grid>
       </Grid>
       <Button onClick={fetchListings} style={{ marginTop: 20, left: '50%', transform: 'translateX(-50%)' }}>Search</Button>
+      {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
       <h2>Results</h2>
       <DataGrid
         rows={data}

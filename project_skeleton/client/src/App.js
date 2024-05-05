@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { indigo, amber } from '@mui/material/colors'
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles"
 
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import NeighborhoodPage from './pages/NeighborhoodPage';
+import AlbumsPage from './pages/AlbumsPage';
 import AirbnbsPage from './pages/AirbnbsPage';
 import AlbumInfoPage from './pages/AlbumInfoPage';
 import RankPage from './pages/RankPage';
@@ -32,8 +32,8 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/neighborhood" element={<NeighborhoodPage />} />
-          <Route path="/neighborhood/:album_id" element={<AlbumInfoPage />} />
+          <Route path="/neighborhood" element={<AlbumsPage />} />
+          <Route path="/airbnb_list/:subarea" element={<AlbumInfoPage />} />
           <Route path="/search_listing" element={<AirbnbsPage />} />
           <Route path="/areas_statistics/:area_id" element={<AreaStatPage />} />
           <Route path="/areas_statistics" element={<AreaStatPage />} />
