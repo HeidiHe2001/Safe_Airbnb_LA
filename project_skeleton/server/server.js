@@ -18,11 +18,13 @@ app.get('/area_crime_count', routes.area_crime_count);
 app.get('/airbnb_list/:subarea', routes.airbnb_list);
 app.get('/high_price_low_crime', routes.high_price_low_crime);
 app.get('/areas_statistics', routes.areas_statistics);
+app.get('/areas_statistics/:areaid', routes.areas_statistics);
 app.get('/search_listing', routes.search_listing);
 app.get('/high_demand_low_crime', routes.high_demand_low_crime);
 app.get('/high_crime_listing', routes.high_crime_listing);
 app.get('/rank', routes.rank);
 app.get('/neighbor/:subname', routes.neighbor);
+app.get('/area/:areaname', routes.area)
 app.listen(config.server_port, () => {
   console.log(`Server running at http://${config.server_host}:${config.server_port}/`)
 });
