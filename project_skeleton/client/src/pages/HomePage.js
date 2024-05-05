@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Container, Divider, Link } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-
+import SubCard from '../components/SubCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Box from '@mui/material/Box';
 import LazyTable from '../components/LazyTable';
 import ListingCard from '../components/ListingCard';
 const config = require('../config.json');
@@ -11,6 +14,7 @@ export default function HomePage() {
   const [randomRecommend, setRandomRecommend] = useState({});
   const [authors, setAuthors] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  const [showSubCard, setShowSubCard] = useState(false);
 
   useEffect(() => {
     // Fetch request to get the song of the day. Fetch runs asynchronously.
@@ -46,17 +50,20 @@ export default function HomePage() {
 
   const neighborColumns = [
     {
-      field: 'area',
-      headerName: 'Area Number'
-    },
-    {
       field: 'Area',
       headerName: 'Area',
-      renderCell: (row) => <NavLink to={`/area/${row.area_name}`}>{row.area_name}</NavLink>
+      renderCell: (row) => <SubCard
+      AREA_NAME={row.area_name}
+      AREA={row.area}
+      onClose={() => setShowSubCard(false)}
+    />
     },
     {
       field: 'avg_price',
-      headerName: 'Average Airbnb Listing Price'
+      headerName: 'Average Airbnb Listing Price',
+      renderCell: (row) => (
+        <span>${parseFloat(row.avg_price).toFixed(2)}</span>
+      )
     },
   ];
 
@@ -75,12 +82,13 @@ export default function HomePage() {
   return (
     <Container>
       {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
-      <h2>Check out our recommended listing of the day:&nbsp;
+      <h2>
+      <FontAwesomeIcon icon={faStar} /> Check out our recommended listing of the day:&nbsp;
         {randomRecommend.airbnb_name ? (
         <Link onClick={() => setSelectedId(randomRecommend.id)}>{randomRecommend.airbnb_name}</Link>
       ) : (
       <span>Loading...</span>
-  )}
+  )} <FontAwesomeIcon icon={faStar} />
       </h2>
       <Divider />
       <h2>Top 3 Safest Areas</h2>

@@ -20,7 +20,8 @@ const NeighborCard = ({ AREA_NAME, SUBAREA_NAME, AREA }) => (
   <React.Fragment>
     <CardContent>
       <Typography variant="h5" component="div">
-        {AREA_NAME}{bull}{SUBAREA_NAME}
+        {AREA_NAME}
+        {SUBAREA_NAME && <>{bull}{SUBAREA_NAME}</>}
       </Typography>
       <Typography sx={{ mb: -2 }} color="text.secondary">
         Area Number: {AREA}
