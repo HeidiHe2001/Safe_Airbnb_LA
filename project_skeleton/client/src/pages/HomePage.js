@@ -32,19 +32,18 @@ export default function HomePage() {
 
   const abnbColumns = [
     {
-      field: 'Airbnb',
-      headerName: 'Airbnb Title',
-      renderCell: (row) => <Link onClick={() => setSelectedId(row.id)}>{row.airbnb_name}</Link> 
+      field: 'airbnb_name',
+      headerName: 'Airbnb',
+      renderCell: (row) => 
+      <Link onClick={() => setSelectedId(row.id)}>{row.airbnb_name}</Link> 
       // A Link component is used just for formatting purposes
     },
     {
-      field: 'Neighborhood',
-      headerName: 'Neighborhood',
-      renderCell: (row) => <NavLink to={`/neighbor/${row.neighborhood}`}>{row.area_name}</NavLink>
-    },
-    {
-      field: 'Star',
-      headerName: 'Star'
+      field: 'price',
+      headerName: 'Price',
+      renderCell: (row) => (
+        <span>${parseFloat(row.price).toFixed(2)}</span>
+      )
     },
   ];
 
@@ -66,18 +65,8 @@ export default function HomePage() {
       )
     },
   ];
+  
 
-  const neighborListColumns = [
-    {
-      field: 'neighborhood',
-      headerName: 'Neighborhood',
-      renderCell: (row) => <NavLink to={`/neighbor/${row.neighborhood}`}>{row.neighborhood}</NavLink>
-    },
-    {
-      field: 'listing_count',
-      headerName: 'Total Numbers of Airbnb Listings'
-    },
-  ];
 
   return (
     <Container>
@@ -98,13 +87,16 @@ export default function HomePage() {
       defaultPageSize={3} 
       rowsPerPageOptions={[1, 3]}/>
       <Divider />
-      <h2>Most Popular Neighborhoods</h2>
+      {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
+      <h2>Most Popular Airbnb Listings</h2>
+      {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}
       <LazyTable
-        route={`http://${config.server_host}:${config.server_port}/neighborhood`}
-        columns={neighborListColumns}
+        route={`http://${config.server_host}:${config.server_port}/high_demand_low_crime`}
+        columns={abnbColumns}
         defaultPageSize={5} 
         rowsPerPageOptions={[5, 10]}/>
       <Divider />
+      
       <p>Created by {authors} @ UPenn</p>
     </Container>
   );
