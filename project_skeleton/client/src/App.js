@@ -5,9 +5,9 @@ import { createTheme } from "@mui/material/styles"
 
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import AlbumsPage from './pages/AlbumsPage';
+import NeighborhoodPage from './pages/NeighborhoodPage';
 import AirbnbsPage from './pages/AirbnbsPage';
-import AlbumInfoPage from './pages/AlbumInfoPage';
+import AreaListingPage from './pages/AreaListingPage';
 import RankPage from './pages/RankPage';
 import AreaStatPage from './pages/AreaStatPage'
 
@@ -32,8 +32,8 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/neighborhood" element={<AlbumsPage />} />
-          <Route path="/airbnb_list/:subarea" element={<AlbumInfoPage />} />
+          <Route path="/neighborhood" element={<NeighborhoodPage />} />
+          <Route path="/airbnb_list/:areaname" element={<AreaListingPage />} />
           <Route path="/search_listing" element={<AirbnbsPage />} />
           <Route path="/areas_statistics/:area_id" element={<AreaStatPage />} />
           <Route path="/areas_statistics" element={<AreaStatPage />} />

@@ -44,6 +44,14 @@ export default function HomePage() {
         <span>${parseFloat(row.price).toFixed(2)}</span>
       )
     },
+    {
+      field: 'number_of_reviews',
+      headerName: 'Number of Reviews'
+    },
+    {
+      field: 'star',
+      headerName: 'Star'
+    },
   ];
 
   const neighborColumns = [
@@ -65,8 +73,6 @@ export default function HomePage() {
     },
   ];
   
-
-
   return (
     <Container>
       {selectedId && <ListingCard Id={selectedId} handleClose={() => setSelectedId(null)} />}

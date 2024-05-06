@@ -15,7 +15,7 @@ app.get('/random', routes.random);
 app.get('/listing/:id', routes.listing);
 app.get('/neighborhood', routes.neighborhood);
 app.get('/area_crime_count', routes.area_crime_count);
-app.get('/airbnb_list/:subarea', routes.airbnb_list);
+app.get('/airbnb_list/:areaname', routes.airbnb_list);
 app.get('/high_price_low_crime', routes.high_price_low_crime);
 app.get('/areas_statistics', routes.areas_statistics);
 app.get('/areas_statistics/:areaid', routes.areas_statistics);

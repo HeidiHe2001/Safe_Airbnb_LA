@@ -12,6 +12,7 @@ export default function AirbnbsPage() {
   const [listingId, setListingId] = useState([]);
 
   const [title, setTitle] = useState('');
+  const [searchid, setSearchId] = useState();
   const [stars, setStars] = useState([0, 5]);
   const [bedrooms, setBedrooms] = useState([0, 10]);
   const [bathrooms, setBathrooms] = useState([0, 10]);
@@ -27,7 +28,7 @@ export default function AirbnbsPage() {
   }, []);
 
   const fetchListings = () => {
-    const query = `title=${title}&star_low=${stars[0]}&star_high=${stars[1]}&bedroom_low=${bedrooms[0]}&bedroom_high=${bedrooms[1]}&bathroom_low=${bathrooms[0]}&bathroom_high=${bathrooms[1]}&min_night_low=${minNights[0]}&min_night_high=${minNights[1]}`;
+    const query = `title=${title}&searchid=${searchid}&star_low=${stars[0]}&star_high=${stars[1]}&bedroom_low=${bedrooms[0]}&bedroom_high=${bedrooms[1]}&bathroom_low=${bathrooms[0]}&bathroom_high=${bathrooms[1]}&min_night_low=${minNights[0]}&min_night_high=${minNights[1]}`;
     fetch(`http://${config.server_host}:${config.server_port}/search_listing?${query}`)
       .then(res => res.json())
       .then(resJson => {
@@ -55,7 +56,7 @@ export default function AirbnbsPage() {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Title"
+            label="Enter keywords"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
