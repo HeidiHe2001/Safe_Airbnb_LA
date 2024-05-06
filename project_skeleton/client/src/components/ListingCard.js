@@ -75,9 +75,11 @@ export default function ListingCard({ Id, handleClose }) {
             onClose={() => setShowSubCard(false)}
           />
         )}
-        <Typography sx={{ mt: 2 }}>Bedroom(s): {listingData.BEDROOMS}</Typography>
+        <Typography sx={{ mt: 2 }}>Listing Type: {listingData.ROOM_TYPE}</Typography>
+        <Typography>Bedroom(s): {listingData.BEDROOMS}</Typography>
         <Typography>Bed(s): {listingData.BEDS}</Typography>
         <Typography>Bath(s): {listingData.BATHS}</Typography>
+        
         
         <div style={{ marginTop: 20, height: 250 }}>
           <ResponsiveContainer width="100%" height="100%">

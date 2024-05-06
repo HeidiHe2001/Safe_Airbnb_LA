@@ -28,7 +28,7 @@ const NeighborCard = ({ AREA_NAME, SUBAREA_NAME, AREA }) => (
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" href={`/areas_statistics/${AREA}`}>Find detailed crime data of {AREA_NAME}</Button>
+      <Button size="small" href={`/areas_statistics/${AREA}`}>Find detailed crime & Airbnb data of {AREA_NAME}</Button>
     </CardActions>
   </React.Fragment>
 );
