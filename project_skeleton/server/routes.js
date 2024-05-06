@@ -117,16 +117,25 @@ const area_crime_count = async function(req, res) {
 }
 
 
-// Route 6: GET /airbnb_list/:subarea
+// Route 6: GET /airbnb_list/:areaname
 const airbnb_list = async function(req, res) {
   // Given subarea, retrieve all airbnb in that area with id
-  const subarea = req.params.subarea;
-  connection.query(`
+  const page = req.query.page;
+  const pageSize = req.query.page_size ? req.query.page_size : 10;
+  const areaname = req.params.areaname;
+  let taskQuery = `
   SELECT *
   FROM CRIME_AIRBNB.Airbnb a
   JOIN CRIME_AIRBNB.Areas ON CRIME_AIRBNB.Areas.SUBAREA_NAME= a.neighborhood
-  WHERE CRIME_AIRBNB.Areas.SUBAREA_NAME LIKE '%${subarea}%';
-  `, (err, data) => {
+  WHERE CRIME_AIRBNB.Areas.SUBAREA_NAME = '${areaname}'
+  `;
+  if (!page) {
+    taskQuery  = taskQuery
+  } else {
+    const offset = (page - 1) * pageSize;
+    taskQuery += ` LIMIT ${pageSize} OFFSET ${offset}`;
+  }
+  connection.query(taskQuery, (err, data) => {
     if (err) {
       console.log(err);
       res.json([]);
@@ -229,6 +238,7 @@ const search_listing = async function(req, res) {
   // return all Airbnb listing that match the given search query with parameters 
   // defaulted to those specified in API spec ordered by id (ascending)
   const title = req.query.title ?? '';
+  const searchid = req.query.title ?? 0;
   const starLow = req.query.star_low ?? 0;
   const starHigh = req.query.star_high ?? 5;
   const level = req.query.crime_rate ?? 'Good';
@@ -263,7 +273,7 @@ const search_listing = async function(req, res) {
     AND abnb.MINIMUM_NIGHTS >= ${minNightLow} AND abnb.MINIMUM_NIGHTS <= ${minNightHigh}
   `;
   if (title) {
-    taskQuery += ` AND title LIKE '%${title}%'`;
+    taskQuery += ` AND airbnb_name LIKE '%${title}%'`;
   }
   taskQuery += ` ORDER BY id ASC;`;
 
@@ -294,7 +304,7 @@ const high_demand_low_crime = async function(req, res) {
     FROM CRIME_AIRBNB.Areas
     GROUP BY AREA
     HAVING COUNT(*) < (SELECT AVG(total_crimes) FROM crime_summary))
-  SELECT id, airbnb_name, price
+  SELECT id, airbnb_name, price, number_of_reviews, star
   FROM CRIME_AIRBNB.Airbnb
   WHERE neighborhood IN (
   SELECT CRIME_AIRBNB.Areas.SUBAREA_NAME NAME FROM low_crime_areas la
@@ -368,21 +378,24 @@ const rank = async function(req, res) {
   const pageSize = req.query.page_size ? req.query.page_size : 10;
 
   let taskQuery = `
-  WITH CrimeCounts AS (
-    SELECT area.SUBAREA_NAME AS neighborhood, COUNT(*) AS crime_count,
-    SUM(CASE WHEN severance.Part = 1 THEN 1 ELSE 0 END) AS severe_crime_count
-    FROM CRIME_AIRBNB.CrimeData crime
-    JOIN CRIME_AIRBNB.Areas area ON crime.AREA = area.AREA
-    JOIN CRIME_AIRBNB.Severance severance ON crime.Crm_Cd = severance.Crm_Cd
-    GROUP BY area.SUBAREA_NAME),
-  AverageRatings AS (
-    SELECT neighborhood, AVG(star) AS avg_rating
-    FROM CRIME_AIRBNB.Airbnb airbnb
-    GROUP BY neighborhood)
-  SELECT c.neighborhood, c.crime_count, c.severe_crime_count, a.avg_rating,
-  RANK() OVER (ORDER BY c.crime_count, c.severe_crime_count) AS crime_rank,
+  SELECT
+  area.SUBAREA_NAME AS neighborhood,
+  area.AREA_NAME AS areaname,
+  area.Area As area_id,
+  cd.crime_count,
+  cd.severe_crime_count,
+  a.avg_rating,
+  RANK() OVER (ORDER BY cd.crime_count, cd.severe_crime_count) AS crime_rank,
   RANK() OVER (ORDER BY a.avg_rating DESC) AS rating_rank
-  FROM CrimeCounts c JOIN AverageRatings a ON c.neighborhood = a.neighborhood
+  FROM CRIME_AIRBNB.Areas area
+  JOIN (SELECT AREA, COUNT(*) AS crime_count, SUM(CASE WHEN Part = 1 THEN 1 ELSE 0 END) AS severe_crime_count
+   FROM CRIME_AIRBNB.CrimeData
+   JOIN CRIME_AIRBNB.Severance ON CrimeData.Crm_Cd = Severance.Crm_Cd
+   GROUP BY AREA) cd ON area.AREA = cd.AREA
+  LEFT JOIN
+  (SELECT neighborhood, AVG(star) AS avg_rating
+   FROM CRIME_AIRBNB.Airbnb
+   GROUP BY neighborhood) a ON area.SUBAREA_NAME = a.neighborhood
   `;
   if (!page) {
     taskQuery  = taskQuery
